@@ -16,12 +16,17 @@ const connectToDatabase = async (dbName) => {
 
 const getSlug = async (req, res, next) => {
   try {
-    const { host } = req;
-    var subdomain = host ? host.substring(0, host.lastIndexOf('.')) : null;
-    console.log(" N ",subdomain)
-    if (subdomain) {
-      req.subdomain = subdomain
-      next()
+    const host = req.get("origin");
+    const url = new URL(link);
+    const hostname = url.hostname;
+    console.log(" Host name ",hostname,url)
+    const parts = hostname.split('.');
+    console.log(parts)
+    if (parts.length >= 3) {
+      const subdomain = parts[0];
+      console.log(" sub domain ",subdomain)
+        req.subdomain = subdomain
+        next()
     } else {
       return res.status(404).json({message:"Tenant Subdomain not found."})
     }
