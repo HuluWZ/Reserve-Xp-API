@@ -4,19 +4,19 @@ const vendorController = require('../controllers/vendorController');
 const { validateSuperAdminToken } = require("../middleware/token");
 const { uploadIDAndLicenseImages,uploadMultipleImages,uploadAnyImages } = require("../middleware/fileupload");
 
-router.get("/",validateSuperAdminToken, vendorController.getAllVendors);
+router.get("/", vendorController.getAllVendors);
 
-router.get("/:id", validateSuperAdminToken, vendorController.getVendorById);
+router.get("/:id", vendorController.getVendorById);
 
 router.post("/register", uploadIDAndLicenseImages, vendorController.createVendor);
 
 router.post("/login", vendorController.loginVendor);
 
-router.put("/reject/:id", validateSuperAdminToken, vendorController.rejectVendorById);
+router.put("/reject/:id", vendorController.rejectVendorById);
 
-router.put("/approve/:id", validateSuperAdminToken, vendorController.approveVendorById);
+router.put("/approve/:id", vendorController.approveVendorById);
 
-router.delete("/:id", validateSuperAdminToken, vendorController.deleteVendorById);
+router.delete("/:id", vendorController.deleteVendorById);
 
 
 module.exports = router;
