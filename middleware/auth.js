@@ -17,14 +17,8 @@ const connectToDatabase = async (dbName) => {
 const getSlug = async (req, res, next) => {
   try {
     const { host } = req;
-    console.log(" Host ",host)
-    const isLocalhost = host && host.includes('localhost');
-    if (isLocalhost) {
-      var subdomain = isLocalhost ? host.split('.')[0] : null
-    } else {
-      var subdomain = host ? host.substring (0, host.lastIndexOf ('.')) : null;
-    }
-    console.log(subdomain)
+    var subdomain = host ? host.substring(0, host.lastIndexOf('.')) : null;
+    console.log(" N ",subdomain)
     if (subdomain) {
       req.subdomain = subdomain
       next()
