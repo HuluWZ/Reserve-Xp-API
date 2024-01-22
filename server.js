@@ -9,7 +9,7 @@ const { log } = require("mercedlogger") // import mercedlogger's log function
 require('./database/connection')
 const Tenant = require('./tenant/tenant')
 const {tenantDb , centralDb} = require('./middleware/db')
-const {auth , centralAuth} = require('./middleware/auth')
+const { getSlug, auth , centralAuth} = require('./middleware/auth')
 
 require("dotenv").config() // load .env variables
 const cors = require('cors');
@@ -42,13 +42,12 @@ const userRoutes = require('./routes/userRoutes')
 
 const locationRoutes = require('./routes/locationRoutes')
 
-
 app.use("/api/tenant/", centralAuth, tenantRoutes);
 app.use("/api/superadmin/", centralDb, superRoutes);
-app.use("/api/:slug/vendor/", auth, tenantDb, vendorRoutes);
-app.use("/api/:slug/user/", auth, tenantDb, userRoutes);
-app.use("/api/:slug/location/", auth, tenantDb, locationRoutes);
-app.use("/api/:slug/hotel/", auth, tenantDb, hotelRoutes);
+app.use("/api/vendor/", getSlug,auth, tenantDb, vendorRoutes);
+app.use("/api/user/",getSlug, auth, tenantDb, userRoutes);
+app.use("/api/location/", getSlug,auth, tenantDb, locationRoutes);
+app.use("/api/hotel/",getSlug, auth, tenantDb, hotelRoutes);
 
 
 app.use('/:slug/',auth,tenantDb,flightRoutes);
