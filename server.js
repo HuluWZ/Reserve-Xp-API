@@ -67,20 +67,6 @@ app.listen(process.env.PORT, () => {
 });
 
 
-// mongoose.
-//     connect("mongodb+srv://tinsaebirhan7:D9EubbEi5lJpDCW1@cluster0.ovqcrvw.mongodb.net/ReserveXP?retryWrites=true&w=majority")
-//     .then(() => {
-//         app.getMaxListeners('/blog', (req, res) => {
-//             res.send("Hello Node API")
-
-//         })
-//         console.log("connected to mongo")
-//     }).catch((error) => {
-//         console.log(error)
-//     })
-
-
-
 
 // GET all bookings
 app.get("/:slug/bookings", auth,tenantDb,async (req, res) => {
