@@ -15,9 +15,9 @@ const connectToDatabase = async ( dbName) => {
 };
 
 const tenantDb = async function (req, res, next) {
-    const {slug} = req.params
-    console.log('Tenant Database',slug)
-    await connectToDatabase(slug);
+    const {subdomain} = req
+    console.log('Tenant Database',subdomain)
+    await connectToDatabase(subdomain);
     next()
 }
 const centralDb = async function (req, res, next) {
