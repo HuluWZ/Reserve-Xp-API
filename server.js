@@ -50,12 +50,12 @@ app.use("/api/location/", getSlug,auth, tenantDb, locationRoutes);
 app.use("/api/hotel/",getSlug, auth, tenantDb, hotelRoutes);
 
 
-app.use('/:slug/',auth,tenantDb,flightRoutes);
-app.use('/:slug/',auth,tenantDb, spaceRoutes);
-app.use('/:slug/',auth,tenantDb, tourRoutes);
-app.use('/:slug/',auth,tenantDb,carRoutes);
-app.use('/:slug/',auth,tenantDb, boatRoutes);
-app.use('/:slug/',auth,tenantDb,roomRoutes);
+app.use('/:slug/',getSlug,auth,tenantDb,flightRoutes);
+app.use('/:slug/',getSlug,auth,tenantDb, spaceRoutes);
+app.use('/:slug/',getSlug,auth,tenantDb, tourRoutes);
+app.use('/:slug/',getSlug,auth,tenantDb,carRoutes);
+app.use('/:slug/',getSlug,auth,tenantDb, boatRoutes);
+app.use('/:slug/',getSlug,auth,tenantDb,roomRoutes);
 
 
 
