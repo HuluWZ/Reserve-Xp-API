@@ -1,8 +1,5 @@
-FROM node:18
+FROM nginx:latest
 
-WORKDIR /usr/src/app
+EXPOSE 80
 
-COPY package.json
-
-RUN npm install
-
+COPY . /usr/share/nginx/api
